@@ -22,7 +22,7 @@ export function setTokenHeader(token) {
  * @param {object} data (optional) data in JSON form for POST requests
  */
 
-export async function apiCall(method, path, data = { }) {
+export async function apiCall(method, path, data = {}) {
   try {
     let res = await axios[method](path, data);
     return res.data;
