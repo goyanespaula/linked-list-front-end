@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import UserFeed from './UserFeed';
+import UserFeed from "./UserFeed";
 
 const UserHomepage = ({ currentUser }) => {
   if (!currentUser.isAuthenticated) {
@@ -12,9 +12,7 @@ const UserHomepage = ({ currentUser }) => {
       </div>
     );
   }
-  return (
-    <UserFeed currentUser={currentUser} />
-  );
+  return <UserFeed currentUser={currentUser} />;
 };
 
 UserHomepage.propTypes = {

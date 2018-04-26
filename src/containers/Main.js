@@ -59,7 +59,9 @@ const Main = props => {
         <Route
           exact
           path="/"
-          render={props => <UserHomepage {...props} currentUser={currentUser} />}
+          render={props => (
+            <UserHomepage {...props} currentUser={currentUser} />
+          )}
         />
       </Switch>
     </div>
