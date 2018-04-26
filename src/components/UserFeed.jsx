@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { apiCall } from "../services/api";
+import axios from "axios";
 
 export default class UserFeed extends Component {
   constructor(props) {
@@ -13,7 +14,11 @@ export default class UserFeed extends Component {
 
   async componentDidMount() {
     try {
+      //   let token = localStorage.getItem("jwtToken");
       let jobList = await apiCall("get", "/jobs", {});
+      //   let jobList = await axios.get("/jobs", {
+      //     headers: { Authorization: `Bearer ${token}` }
+      //   });
       this.setState({ jobs: [...jobList.data] });
     } catch (err) {
       err = err.toString();
