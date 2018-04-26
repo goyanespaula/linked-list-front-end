@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import UserFeed from './UserFeed';
 
-const Homepage = ({ currentUser }) => {
+const UserHomepage = ({ currentUser }) => {
   if (!currentUser.isAuthenticated) {
     return (
       <div>
@@ -11,11 +12,13 @@ const Homepage = ({ currentUser }) => {
       </div>
     );
   }
-  return <h1>You are logged in!</h1>;
+  return (
+    <UserFeed currentUser={currentUser} />
+  );
 };
 
-Homepage.propTypes = {
+UserHomepage.propTypes = {
   currentUser: PropTypes.object
 };
 
-export default Homepage;
+export default UserHomepage;

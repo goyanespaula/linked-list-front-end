@@ -13,8 +13,8 @@ export function setAuthorizationToken(token) {
 export function authUser(type, data) {
   return async dispatch => {
     try {
-      let newUser = await apiCall("post", `/users`, { data });
-      let authData = await apiCall("post", `/user-auth`, { data });
+      let newUser = await apiCall("post", `/users`, data);
+      let authData = await apiCall("post", `/users/user-auth`, data);
       // once we have logged in, set a token in localStorage
       localStorage.setItem("jwtToken", authData.data.token);
       // set a header of Authorization
@@ -34,7 +34,7 @@ export function authUser(type, data) {
 export function loginUser(type, data) {
   return async dispatch => {
     try {
-      let authData = await apiCall("post", `/user-auth`, { data });
+      let authData = await apiCall("post", `users/user-auth`, data);
       // once we have logged in, set a token in localStorage
       localStorage.setItem("jwtToken", authData.data.token);
       // set a header of Authorization

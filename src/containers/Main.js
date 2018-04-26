@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { removeError } from "../store/actions/errors";
 import { authUser, loginUser } from "../store/actions/auth";
-import Homepage from "../components/Homepage";
+import UserHomepage from "../components/UserHomepage";
 import AuthForm from "../components/AuthForm";
 import withAuth from "../hocs/withAuth";
 
@@ -59,7 +59,7 @@ const Main = props => {
         <Route
           exact
           path="/"
-          render={props => <Homepage {...props} currentUser={currentUser} />}
+          render={props => <UserHomepage {...props} currentUser={currentUser} />}
         />
       </Switch>
     </div>
