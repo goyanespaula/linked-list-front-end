@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 // src
 import { apiCall } from "../services/api";
 import UserBasicInfo from "./UserBasicInfo";
+import UserExperiences from "./UserExperiences";
 
 class UserProfile extends Component {
   constructor(props) {
@@ -26,19 +27,22 @@ class UserProfile extends Component {
         {}
       );
       this.setState({ user: user.data });
-      if()
+      if(this.props.currentUser.user.username === user.data.username) {
+        this.setState({ isCurrentUser: true })
+      }
     } catch (err) {
       this.props.history.push("/");
     }
   }
 
   render() {
-    let { firstName, lastName, photo, currentCompanyName } = this.state.user;
+    let { firstName, lastName, photo, currentCompanyName, experience } = this.state.user;
     return (
       <div>
         <h1>UserProfile!!!</h1>
-        <UserBasicInfo firstName={firstName} lastName={lastName} photo={photo} currentCompanyName={currentCompanyName} />
-        {/* UserExpreiences
+        <UserBasicInfo firstName={firstName} lastName={lastName} photo={photo} currentCompanyName={currentCompanyName} isCurrentUser={this.state.isCurrentUser} />
+        <UserExperiences  experiences={experience || []} isCurrentUser={this.state.isCurrentUser} />
+        {/* UserExperiences
             UserSkills
             UserEducation
         */}
