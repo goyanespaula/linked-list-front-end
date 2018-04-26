@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { apiCall } from "../services/api";
 import UserBasicInfo from "./UserBasicInfo";
 import UserExperiences from "./UserExperiences";
+import UserSkills from "./UserSkills"
 
 class UserProfile extends Component {
   constructor(props) {
@@ -36,13 +37,14 @@ class UserProfile extends Component {
   }
 
   render() {
-    let { firstName, lastName, photo, currentCompanyName, experience } = this.state.user;
+    let { firstName, lastName, photo, currentCompanyName, experience, skills } = this.state.user;
     return (
       <div>
         <h1>UserProfile!!!</h1>
         <UserBasicInfo firstName={firstName} lastName={lastName} photo={photo} currentCompanyName={currentCompanyName} isCurrentUser={this.state.isCurrentUser} />
         <UserExperiences  experiences={experience || []} isCurrentUser={this.state.isCurrentUser} />
-        {/* UserExperiences
+        <UserSkills skills={skills || []} isCurrentUser={this.state.isCurrentUser} />
+        {/* 
             UserSkills
             UserEducation
         */}
