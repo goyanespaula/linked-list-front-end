@@ -1,15 +1,20 @@
+/// libraries
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+
+// src
 import { removeError } from "../store/actions/errors";
 import { authUser, loginUser } from "../store/actions/auth";
 import UserHomepage from "../components/UserHomepage";
 import AuthForm from "../components/AuthForm";
 import withAuth from "../hocs/withAuth";
+import UserShow from "../components/UserShow";
 
 const Main = props => {
   const { authUser, currentUser, errors, removeError, loginUser } = props;
+
   return (
     <div className="container">
       <Switch>
@@ -56,6 +61,7 @@ const Main = props => {
           path="/secret"
           component={withAuth(() => <h1>Secret Page!</h1>)}
         />
+        <Route path="/users/:username" component={UserShow} />
         <Route
           exact
           path="/"

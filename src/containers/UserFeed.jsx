@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 // src
 import { getJobs } from "../store/actions/jobs";
@@ -27,8 +27,12 @@ class UserFeed extends Component {
 
   render() {
     let jobs = this.props.jobs.map(job => <Job job={job} />);
+    let username = this.props.currentUser.user.username;
     return (
       <div>
+        <h1>
+          Hi <Link to={`/users/${username}`}>{username}</Link>
+        </h1>
         <h1>{this.props.errors.message}</h1>
         <ul className="list-group">{jobs}</ul>
       </div>
