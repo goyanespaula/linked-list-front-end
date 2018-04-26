@@ -1,7 +1,10 @@
+// libraries
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import UserFeed from "./UserFeed";
+
+// src
+import UserFeed from "../containers/UserFeed";
 
 const UserHomepage = ({ currentUser }) => {
   if (!currentUser.isAuthenticated) {
