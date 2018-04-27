@@ -43,9 +43,10 @@ class EditUserSkills extends Component {
 
   async handleDelete(i, event) {
     event.preventDefault();
-    this.props.skills.splice(i, 1)
-    let newSkills = { skills: this.props.skills }
-    debugger
+    let skillList = [...this.props.skills];
+    skillList.splice(i, 1)
+    let newSkills = { skills: skillList }
+    
     try {
       await apiCall('patch', `/users/${this.props.match.params.username}`, newSkills)
       this.props.updateUser();
