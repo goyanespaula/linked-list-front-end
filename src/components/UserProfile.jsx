@@ -10,6 +10,7 @@ import UserExperiences from "./UserExperiences";
 import UserEducations from "./UserEducations";
 import UserSkills from "./UserSkills";
 import EditUserBasicInfo from "../containers/EditUserBasicInfo";
+import EditUserSkills from '../containers/EditUserSkills';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -78,6 +79,7 @@ class UserProfile extends Component {
       skills,
       education
     } = this.state.user;
+    // USER BASIC INFO PANEL
     const basicInfoField = this.state.userIsEdit ? (
       <EditUserBasicInfo
         firstName={firstName}
@@ -97,6 +99,20 @@ class UserProfile extends Component {
         openEditor={this.openEditor.bind(this, "userIsEdit")}
       />
     );
+    // USER BASIC SKILLS PANEL
+    const skillsField = this.state.skillsIsEdit ? (
+      <EditUserSkills
+        skills={skills || []}
+        closeEditor={this.closeEditors.bind(this)}
+        updateUser={this.updateUser.bind(this)}
+      />
+    ) : (
+      <UserSkills
+        skills={skills || []}
+        isCurrentUser={this.state.isCurrentUser}
+        openEditor={this.openEditor.bind(this, "skillsIsEdit")}
+      />
+    );
 
     return (
       <div>
@@ -110,10 +126,7 @@ class UserProfile extends Component {
           educations={education || []}
           isCurrentUser={this.state.isCurrentUser}
         />
-        <UserSkills
-          skills={skills || []}
-          isCurrentUser={this.state.isCurrentUser}
-        />
+        {skillsField}
       </div>
     );
   }

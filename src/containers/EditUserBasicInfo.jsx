@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { apiCall } from "../services/api";
 import { addError, removeError } from "../store/actions/errors";
-// import { ADD_ERROR,  } from "../store/actionTypes"
 
 class EditUserBasicInfo extends Component {
   constructor(props) {
