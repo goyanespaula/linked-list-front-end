@@ -1,6 +1,7 @@
 // libraries
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 
 // src
 import { apiCall } from "../services/api";
@@ -51,6 +52,22 @@ class UserProfile extends Component {
     });
   }
 
+  async updateUser() {
+    try {
+      const user = await apiCall(
+        "get",
+        `/users/${this.props.match.params.username}`,
+        {}
+      );
+      this.setState({ user: user.data });
+      if (this.props.currentUser.user.username === user.data.username) {
+        this.setState({ isCurrentUser: true });
+      }
+    } catch (err) {
+      this.props.history.push("/");
+    }
+  }
+
   render() {
     let {
       firstName,
@@ -68,6 +85,7 @@ class UserProfile extends Component {
         photo={photo}
         currentCompanyName={currentCompanyName}
         closeEditor={this.closeEditors.bind(this)}
+        updateUser={this.updateUser.bind(this)}
       />
     ) : (
       <UserBasicInfo
@@ -79,6 +97,7 @@ class UserProfile extends Component {
         openEditor={this.openEditor.bind(this, "userIsEdit")}
       />
     );
+
     return (
       <div>
         <h1>UserProfile!!!</h1>

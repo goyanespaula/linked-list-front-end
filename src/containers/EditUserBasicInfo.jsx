@@ -29,12 +29,13 @@ class EditUserBasicInfo extends Component {
 
   handleEditSubmit(event) {
     event.preventDefault();
-    // this.props.editTodo({
-    //   firstName: this.state.firstName,
-    //   lastName: this.state.lastName,
-    //   currentCompanyName: this.state.currentCompanyName,
-    //   photo: this.state.photo
-    // });
+    try {
+      ("hi, I'm gonna make an API call here");
+    } catch (err) {
+      // handler errors please
+    }
+    this.props.updateUser();
+    this.props.closeEditor();
   }
 
   render() {
@@ -119,7 +120,8 @@ EditUserBasicInfo.propTypes = {
   lastName: PropTypes.string,
   photo: PropTypes.string,
   currentCompanyName: PropTypes.string,
-  closeEditor: PropTypes.func
+  closeEditor: PropTypes.func,
+  updateUser: PropTypes.func
 };
 
 const mapStateToProps = state => {
