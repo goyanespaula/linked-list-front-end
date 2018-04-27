@@ -1,7 +1,6 @@
 // libraries
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Redirect } from "react-router-dom";
 
 // src
 import { apiCall } from "../services/api";
@@ -10,7 +9,8 @@ import UserExperiences from "./UserExperiences";
 import UserEducations from "./UserEducations";
 import UserSkills from "./UserSkills";
 import EditUserBasicInfo from "../containers/EditUserBasicInfo";
-import EditUserSkills from '../containers/EditUserSkills';
+import EditUserSkills from "../containers/EditUserSkills";
+import EditUserExperiences from "../containers/EditUserExperiences";
 
 class UserProfile extends Component {
   constructor(props) {
@@ -99,7 +99,7 @@ class UserProfile extends Component {
         openEditor={this.openEditor.bind(this, "userIsEdit")}
       />
     );
-    // USER BASIC SKILLS PANEL
+    // USER SKILLS PANEL
     const skillsField = this.state.skillsIsEdit ? (
       <EditUserSkills
         skills={skills || []}
@@ -113,15 +113,26 @@ class UserProfile extends Component {
         openEditor={this.openEditor.bind(this, "skillsIsEdit")}
       />
     );
+    // USER EXPERIENCES PANEL
+    const experiencesField = this.state.experienceIsEdit ? (
+      <EditUserExperiences
+        experiences={experience || []}
+        closeEditor={this.closeEditors.bind(this)}
+        updateUser={this.updateUser.bind(this)}
+      />
+    ) : (
+      <UserExperiences
+        experiences={experience || []}
+        isCurrentUser={this.state.isCurrentUser}
+        openEditor={this.openEditor.bind(this, "experienceIsEdit")}
+      />
+    );
 
     return (
       <div>
         <h1>UserProfile!!!</h1>
         {basicInfoField}
-        <UserExperiences
-          experiences={experience || []}
-          isCurrentUser={this.state.isCurrentUser}
-        />
+        {experiencesField}
         <UserEducations
           educations={education || []}
           isCurrentUser={this.state.isCurrentUser}
