@@ -67,21 +67,27 @@ class EditUserExperiences extends Component {
 
   async handleDelete(i, event) {
     event.preventDefault();
-    let skillList = [...this.props.skills];
-    skillList.splice(i, 1);
-    let newSkills = { skills: skillList };
+    let cleanedExps = this.props.experiences.map(exp => {
+      delete exp._id;
+      exp.startDate = exp.startDate.split("T")[0];
+      exp.endDate = exp.endDate.split("T")[0];
+      return exp;
+    });
+    cleanedExps.splice(i, 1);
+    let newExperiences = { experience: cleanedExps };
 
     try {
       await apiCall(
         "patch",
         `/users/${this.props.match.params.username}`,
-        newSkills
+        newExperiences
       );
       this.props.updateUser();
       this.props.dispatch(removeError());
     } catch (err) {
       this.props.dispatch(addError(err.message));
     }
+    this.props.closeEditor();
   }
 
   render() {
