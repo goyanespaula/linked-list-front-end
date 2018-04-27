@@ -15,7 +15,7 @@ class UserProfile extends Component {
       experienceIsEdit: false,
       educationIsEdit: false,
       skillsIsEdit: false,
-      isCurrentUser: false,
+      isCurrentUser: false
     };
   }
   async componentDidMount() {
@@ -26,7 +26,6 @@ class UserProfile extends Component {
         {}
       );
       this.setState({ user: user.data });
-      if()
     } catch (err) {
       this.props.history.push("/");
     }
@@ -37,14 +36,18 @@ class UserProfile extends Component {
     return (
       <div>
         <h1>UserProfile!!!</h1>
-        <UserBasicInfo firstName={firstName} lastName={lastName} photo={photo} currentCompanyName={currentCompanyName} />
+        <UserBasicInfo
+          firstName={firstName}
+          lastName={lastName}
+          photo={photo}
+          currentCompanyName={currentCompanyName}
+        />
         {/* UserExpreiences
             UserSkills
             UserEducation
         */}
-         
       </div>
-    )
+    );
   }
 }
 
