@@ -42,6 +42,15 @@ class UserProfile extends Component {
     this.setState({ [editField]: true });
   }
 
+  closeEditors() {
+    this.setState({
+      userIsEdit: false,
+      experienceIsEdit: false,
+      educationIsEdit: false,
+      skillsIsEdit: false
+    });
+  }
+
   render() {
     let {
       firstName,
@@ -58,6 +67,7 @@ class UserProfile extends Component {
         lastName={lastName}
         photo={photo}
         currentCompanyName={currentCompanyName}
+        closeEditor={this.closeEditors.bind(this)}
       />
     ) : (
       <UserBasicInfo

@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class EditUserBasicInfo extends Component {
   constructor(props) {
@@ -112,6 +113,14 @@ class EditUserBasicInfo extends Component {
     );
   }
 }
+
+EditUserBasicInfo.propTypes = {
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  photo: PropTypes.string,
+  currentCompanyName: PropTypes.string,
+  closeEditor: PropTypes.func
+};
 
 const mapStateToProps = state => {
   return {
