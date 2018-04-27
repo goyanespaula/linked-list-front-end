@@ -3,13 +3,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { apiCall } from "../services/api";
+import { addError, removeError } from "../store/actions/errors";
+// import { ADD_ERROR,  } from "../store/actionTypes"
 
 class EditUserBasicInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      description: ""
+      firstName: "",
+      lastName: "",
+      photo: "",
+      currentCompanyName: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -27,14 +32,15 @@ class EditUserBasicInfo extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleEditSubmit(event) {
+  async handleEditSubmit(event) {
     event.preventDefault();
     try {
-      ("hi, I'm gonna make an API call here");
+      await apiCall('patch', `/users/${this.props.match.params.username}`, this.state)
+      this.props.updateUser();
+      this.props.dispatch(removeError());
     } catch (err) {
-      // handler errors please
+      this.props.dispatch(addError(err.message));
     }
-    this.props.updateUser();
     this.props.closeEditor();
   }
 

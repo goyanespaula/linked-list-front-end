@@ -9,9 +9,10 @@ const UserBasicInfo = ({
   lastName,
   currentCompanyName,
   isCurrentUser,
-  photo = "http://psmeuae.org/wp-content/uploads/2017/05/profile.jpg",
+  photo,
   openEditor
 }) => {
+  photo = photo || "http://psmeuae.org/wp-content/uploads/2017/05/profile.jpg";
   let workStatus = currentCompanyName ? (
     <h4>Currrently working at {currentCompanyName}</h4>
   ) : (
